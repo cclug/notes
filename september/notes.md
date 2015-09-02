@@ -1,4 +1,4 @@
-September LUG notes 
+September LUG notes
 ===================
 
 group dev idea
@@ -6,8 +6,6 @@ group dev idea
 github gaming script. Script the github dev process in order to have it appear
 that work is done 7 days a week. creat, modify , commit, push origin. Use random
 number of commits and file of commit messages.
-
-*OUT OF SYNC WITH LAPTOP*
 
 Follow up from last LUG meet 
 ----------------------------
