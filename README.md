@@ -1,2 +1,6 @@
-# notes
-Monthly Meetup Notes
+Monthly Meetup Notes 
+====================
+
+Next Meet: 7th September
+
+
