@@ -2,6 +2,18 @@ October LUG notes
 =================
 _discussion topics/questions_
 
+* XSI IPC - leak memory even after process termination (until system reboot - WIN!)
+
+* file last access time
+ls -ltu -> sort by and show last access time  
+ls -ltc -> sort by and show last modification time  
+
+However, it is also not updated by cp(1) or by opening/closing the file in emacs
+without an edit?
+
+* ISO C functions of note
+   strlcpy(3), strlcat(3).
+
 * Getting Valgrind error from calls to pthread_create.
 files: threads/thread_ids.c
    $ make ids  
@@ -31,3 +43,4 @@ Question:
 To whom should I direct this fix so it can be pushed upstream, Distro
 maintainer?
 
+_also pthread_cond_init()_
