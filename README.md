@@ -1,6 +1,6 @@
 Monthly Meetup Notes 
 ====================
 
-Next Meet: 7th September
+Next Meet: 7th October
 
 
