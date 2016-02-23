@@ -1,0 +1,6 @@
+[Unit]
+Description=Getmail
+
+[Service]
+Type=simple
+ExecStart=/sbin/getmail
