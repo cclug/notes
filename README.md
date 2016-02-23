@@ -1,6 +1,4 @@
 Monthly Meetup Notes 
 ====================
 
-Next Meet: 7th October
-
-
+see http://lug.org.au for next meet date
