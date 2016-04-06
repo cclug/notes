@@ -25,3 +25,15 @@ commands
 --------
 $ whereis <cmd>
 mutt -s 'blah' $EMAIL_ADDRESS <<<"body of email"
+
+
+direction of the web
+--------------------
+
+mobile versions of sites are impeding desktop web usage
+
+1. http://music.sydney.edu.au/events/verbrugghen-ensemble-7-6-2016
+    cannot select text (no cut and paste)
+
+2. http://www.lakes.nsw.edu.au/
+    side bar favours mobile usage
