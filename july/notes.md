@@ -14,4 +14,5 @@ or
 
 general discussion
 ------------------
-Tim's blog, separate user to build?
+* Tim's blog, separate user to build?
+* nil is a contraction of the Latin word 'nihil' which means 'nothing'.
