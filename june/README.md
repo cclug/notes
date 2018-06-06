@@ -119,13 +119,13 @@ Note: no stack usage, only local jumps.
 
 ### MIPS registers
 
-$s0-$s7  General registers, preserved across procedure calls.
-$t0-$t7  General registers, not preserved across procedure calls.
-$a0-$a3  Used for procedure arguments
-$v0-$v1  Used for procedure return values
-$zero    Always 0
-$sp      Stack pointer
+$s0-$s7  General registers, preserved across procedure calls.  
+$t0-$t7  General registers, not preserved across procedure calls.  
+$a0-$a3  Used for procedure arguments.  
+$v0-$v1  Used for procedure return values.  
+$zero    Always 0  
+$sp      Stack pointer.  
 $gp      
-$fp      Frame pointer
-$ra      Return address
-$at      Reserved for use by assembler
+$fp      Frame pointer.  
+$ra      Return address.  
+$at      Reserved for use by assembler.  
