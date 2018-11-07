@@ -7,9 +7,9 @@ Into
 WireGuard® is an extremely simple yet fast and modern VPN that utilizes
 state-of-the-art cryptography.
 
-What it is
-How to use it
-Why you might care
+- What it is  
+- How to use it  
+- Why you might care  
 
 What it is
 ----------
@@ -25,19 +25,18 @@ Why you might care
 
 - Linus likes it.
 
-    Can I just once again state my love for [WireGuard] and hope it gets merged
-    soon? Maybe the code isn't perfect, but I've skimmed it, and compared to the
-    horrors that are OpenVPN and IPSec, it's a work of art.
+	> Can I just once again state my love for [WireGuard] and hope it gets merged
+    > soon? Maybe the code isn't perfect, but I've skimmed it, and compared to the
+    > horrors that are OpenVPN and IPSec, it's a work of art. (Linus on LKML)
 
-		Linus Torvalds, on the Linux Kernel Mailing List
 
 https://arstechnica.com/gadgets/2018/08/wireguard-vpn-review-fast-connections-amaze-but-windows-support-needs-to-happen/
 
 - Lines of Code
 
-WireGuard: approx 4000
-OpenVPN + OpenSSl: 600,000
-XFRM+StrongSwan for an IPSEC VPN: 400,000
+WireGuard: approx 4000  
+OpenVPN + OpenSSl: 600,000  
+XFRM+StrongSwan for an IPSEC VPN: 400,000  
 
 - Its done in kernel space and should in theory be much faster.
 
@@ -72,15 +71,9 @@ Server /etc/wireguard/wg0.conf
 	Address = 192.168.0.1/24
 	ListenPort = 51820
 
-	PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; \
-		 	 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; \
-			 ip6tables -A FORWARD -i wg0 -j ACCEPT; \
-			 ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
-	PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; \
-			   iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; \
-			   ip6tables -D FORWARD -i wg0 -j ACCEPT; \
-			   ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE \
+	PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+		 	 
+	PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE \
 
 	SaveConfig = true
 
@@ -121,5 +114,42 @@ Using wg tool on client:
 ## Verify
 
 	sudo wg show
+	interface: wg0
+	public key: ZSkamiOye34q6Z9/yobnyj6vD3ed0DbMxV12QKsxZHg=
+	private key: (hidden)
+	listening port: 51820
+	fwmark: 0xca6c
+
+	peer: kEoWdKBBwg8fyiLY/DqQg6ciRycvA9KDznOS/UOAHWs=
+	endpoint: 159.65.7.29:51820
+	allowed ips: 0.0.0.0/0, ::/0
+	latest handshake: 7 seconds ago
+	transfer: 15.28 KiB received, 7.44 KiB sent
+	persistent keepalive: every 21 seconds
+
 	ifconfig wg0
+	wg0: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1420
+        inet 192.168.0.2  netmask 255.255.255.0  destination 192.168.0.2
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 261  bytes 64288 (64.2 KB)
+        RX errors 0  dropped 17  overruns 0  frame 0
+        TX packets 427  bytes 60132 (60.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 
+
 	route -n
+
+## Killswitch
+
+We can define a 'killswitch' using ufw
+
+    # Allow LAN access.
+    sudo ufw allow in to 192.168.178.0/24
+    sudo ufw allow out to 192.168.178.0/24
+
+    # Block all connections except LAN.
+    sudo ufw default deny outgoing
+    sudo ufw default deny incoming
+    sudo ufw allow out on wg0 from any to any
+
+    # Allow connection to wireguard server. Do we need this?
+    sudo ufw allow out to 159.65.7.29 port 51820 proto udp
