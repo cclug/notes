@@ -136,7 +136,12 @@ Using wg tool on client:
         TX packets 427  bytes 60132 (60.1 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 
 
-	route -n
+	ip route
+	default via 192.168.178.1 dev enxec2280a341c8 proto dhcp metric 100 
+	169.254.0.0/16 dev enxec2280a341c8 scope link metric 1000
+	192.168.0.0/24 dev wg0 proto kernel scope link src 192.168.0.2 
+	192.168.178.0/24 dev enxec2280a341c8 proto kernel scope link src 192.168.178.20 metric 100
+
 
 ## Killswitch
 
