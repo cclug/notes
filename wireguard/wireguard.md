@@ -8,8 +8,8 @@ WireGuard® is an extremely simple yet fast and modern VPN that utilizes
 state-of-the-art cryptography.
 
 - What it is  
-- How to use it  
 - Why you might care  
+- How to use it  
 
 What it is
 ----------
